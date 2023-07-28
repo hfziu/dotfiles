@@ -1,0 +1,7 @@
+(?d).DS_Store
+build/
+build-*/
+cmake-build-*/
+
+.idea
+.vscode
