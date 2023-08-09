@@ -30,3 +30,6 @@ if [ -f "${HOME}/.config/kitty/kitty.conf" ]; then
   cp ${HOME}/.config/kitty/kitty.conf ./.config/kitty/
 fi
 
+if [ -d "${HOME}/.config/nvim" ]; then
+  cp -r ${HOME}/.config/nvim ./.config/
+fi
