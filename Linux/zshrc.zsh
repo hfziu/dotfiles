@@ -17,3 +17,13 @@ alias la='ls -A'
 alias ll='ls -alF'
 alias ls='ls --color=auto'
 alias mv='mv -i'
+
+
+# =================
+# Linux - 3rd Party 
+# =================
+
+# Pyenv
+# -----
+export PYENV_ROOT="$HOME/.pyenv"
+(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)"
