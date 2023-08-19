@@ -40,3 +40,8 @@ fi
 # Homebrew-bottles
 [[ -f $HOME/.iminchina ]] && export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 [[ -f $HOME/.iminchina ]] || unset HOMEBREW_BOTTLE_DOMAIN
+
+# Homebrew PATH
+# -------------
+HOMEBREW_GNUBIN=/opt/homebrew/opt/make/libexec/gnubin
+PATH="$HOMEBREW_GNUBIN:$PATH"
