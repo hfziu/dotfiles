@@ -27,7 +27,7 @@ case "${OS}" in
 esac
 
 if [ -f "${HOME}/.config/kitty/kitty.conf" ]; then
-  cp ${HOME}/.config/kitty/kitty.conf ./.config/kitty/
+  cp -r ${HOME}/.config/kitty ./.config/
 fi
 
 if [ -d "${HOME}/.config/nvim" ]; then
