@@ -36,7 +36,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 # GPG Agent
 # ---------
 export GPG_TTY="$TTY"
-zsh-defer export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# zsh-defer export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # iTerm2 shell integration
