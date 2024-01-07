@@ -27,3 +27,8 @@ fi
 if [ -d $OPENJDK_HOME ]; then
   JAVA_HOME=$OPENJDK_HOME
 fi
+
+# Rustup
+if [ -f "$HOME/.carge/env" ]; then
+  . "$HOME/.cargo/env"
+fi
