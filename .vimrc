@@ -14,6 +14,7 @@ endif
 
 
 " My settings here
+set foldmethod=marker
 set nu "Line numbering
 set shiftwidth=2
 set tabstop=2 "Override the setting in .basic.vimrc
