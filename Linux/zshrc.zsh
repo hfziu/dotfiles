@@ -26,4 +26,4 @@ alias mv='mv -i'
 # Pyenv
 # -----
 export PYENV_ROOT="$HOME/.pyenv"
-(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)"
+(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
