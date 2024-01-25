@@ -94,6 +94,9 @@ $RECYCLE.BIN/
 # Clang
 .cache/clangd
 
+# CMake
+compile_commands.json
+
 # }}} C++ Dev
 
 # VSCode {{{
