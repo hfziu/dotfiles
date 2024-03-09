@@ -1,9 +1,6 @@
-[http]
 [user]
 [commit]
 	gpgsign = true
-[http "https://github.com"]
-    # proxy = http://localhost:1087
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -21,16 +18,13 @@
 	editor = /usr/bin/vim
 	fileMode = false
 	autocrlf = input
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [pull]
 	ff = only
 [init]
 	defaultbranch = main
 [gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
 [gpg]
 	format = ssh
+[credential]
+	helper = osxkeychain
