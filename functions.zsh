@@ -26,7 +26,7 @@ fi
 
 if (( ${+IPINFO_API_TOKEN} )); then
   function ipinfo() {
-    curl "ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
+    curl "https://ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
   }
   function domainip() {
     DNSTOOL=dig
