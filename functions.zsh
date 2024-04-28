@@ -12,7 +12,9 @@ function noproxy() {
 }
 # proxy  # default: set proxy!
 
-(( $+commands[dnslookup] )) && function dns() { dnslookup ${1} https://dns.google/dns-query }
+(( $+commands[dnslookup] )) && \
+  function dns() { dnslookup ${1} https://dns.google/dns-query } && \
+  function dnscn() { dnslookup ${1} https://dns.alidns.com/dns-query }
 
 # Add a convenient function to use macOS's default DNS resolver that gives consistent results with native macOS apps.
 # https://superuser.com/questions/1400250/how-to-query-macos-dns-resolver-from-terminal

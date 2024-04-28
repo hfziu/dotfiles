@@ -8,17 +8,17 @@
 # https://github.com/mattmc3/zsh_unplugged
 
 # set path
-: ${ZDOTDIR:=$HOME/.config/zsh}
-: ${ZPLUGINDIR:=${ZDOTDIR}/plugins}
+# VSCode's shell integration set $ZDOTDIR to $HOME so we use a different variable $ZSH_CUSTOM
+: ${ZSH_CUSTOM:=$HOME/.config/zsh}
 # we save the plugins in a location other than ~/.config
 : ${ANTIDOTE_LITE_HOME:=${XDG_CACHE_HOME:-~/.cache}/antidote.lite}
 
-if [[ ! -f $ZDOTDIR/lib/antidote.lite.zsh ]]; then
-  mkdir -p $ZDOTDIR/lib
+if [[ ! -f $ZSH_CUSTOM/lib/antidote.lite.zsh ]]; then
+  mkdir -p $ZSH_CUSTOM/lib
   curl -L https://raw.githubusercontent.com/mattmc3/zsh_unplugged/main/antidote.lite.zsh \
-    -o $ZDOTDIR/lib/antidote.lite.zsh
+    -o $ZSH_CUSTOM/lib/antidote.lite.zsh
 fi
-source $ZDOTDIR/lib/antidote.lite.zsh
+source $ZSH_CUSTOM/lib/antidote.lite.zsh
 
 # make a github repo plugins list
 prompts=(

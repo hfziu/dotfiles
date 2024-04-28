@@ -18,6 +18,7 @@
 	editor = /usr/bin/vim
 	fileMode = false
 	autocrlf = input
+	trustctime = false
 [pull]
 	ff = only
 [init]
