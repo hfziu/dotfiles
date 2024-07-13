@@ -26,10 +26,16 @@ case "${OS}" in
         echo "Unknown OS: ${OS}"
 esac
 
+# Software settings
 if [ -f "${HOME}/.config/kitty/kitty.conf" ]; then
   cp -r ${HOME}/.config/kitty ./.config/
 fi
 
 if [ -d "${HOME}/.config/nvim" ]; then
   cp -r ${HOME}/.config/nvim ./.config/
+fi
+
+if [ -f "${HOME}/.config/zed/settings.json" ]; then
+  mkdir -p ./.config/zed
+  cp ${HOME}/.config/zed/settings.json ./.config/zed/
 fi
