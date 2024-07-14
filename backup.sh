@@ -13,9 +13,13 @@ case "${OS}" in
         cp ${HOME}/.zshrc ./${OS}/zshrc.zsh
         cp ${HOME}/.zshenv ./${OS}/zshenv.zsh
         cp ${HOME}/.functions.zsh ./functions.zsh
+        # * Mainland China software mirror settings
+        cp ${HOME}/.cn.env ./.cn.env
 
         # Remove personal info in git-config file
         awk '!/name = |email = |signingkey = |essethon|stdgeodesic|127.0.0.1/' ${HOME}/.gitconfig > ./.gitconfig
+
+        # Tmux
         cp ${HOME}/.tmux.conf ./
         ;;
     Linux*)
@@ -26,7 +30,7 @@ case "${OS}" in
         echo "Unknown OS: ${OS}"
 esac
 
-# Software settings
+# Backup software settings
 if [ -f "${HOME}/.config/kitty/kitty.conf" ]; then
   cp -r ${HOME}/.config/kitty ./.config/
 fi

@@ -1,6 +1,11 @@
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+## Mainland China mirrors
+if [ -f "$HOME/.cn.env" ]; then
+  . "$HOME/.cn.env"
+fi
+
 ## Homebrew
 if [ -d /opt/homebrew ]; then  # Apple Silicon
   export HOMEBREW_PREFIX=/opt/homebrew
@@ -18,7 +23,7 @@ if [[ -v HOMEBREW_PREFIX ]]; then  # requires zsh 5.3 or later
   export PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 fi
 
-## Add /usr/local/bin and ~/.local/bin to PATH if not present 
+## Add /usr/local/bin and ~/.local/bin to PATH if not present
 (( $PATH[(I)/usr/local/sbin] )) || export PATH="/usr/local/sbin:$PATH"
 (( $PATH[(I)/usr/local/bin] )) || export PATH="/usr/local/bin:$PATH"
 (( $PATH[(I)$HOME/.local/bin] )) || export PATH="$HOME/.local/bin:$PATH"
@@ -29,6 +34,6 @@ if [ -d $OPENJDK_HOME ]; then
 fi
 
 # Rustup
-if [ -f "$HOME/.carge/env" ]; then
+if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi

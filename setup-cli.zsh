@@ -10,7 +10,7 @@ echo ""
 
 case "${OS}" in
     Darwin*)
-        # SKIP
+        # SKIP: Copy needed files by yourself.
         ;;
     Linux*)
         # Zsh

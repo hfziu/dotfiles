@@ -8,7 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   // Editor settings
-  "theme": "Github Light",
+  // "theme": "Github Light",
   "telemetry": {
     "metrics": false
   },
@@ -19,7 +19,7 @@
   "tab_size": 2,
   // Terminal
   "terminal": {
-    "font_family": "JetBrainsMono Nerd Font",
+    "font_family": "Cascadia Code NF",
     "font_size": 13
   },
   // Language specific settings

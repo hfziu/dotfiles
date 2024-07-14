@@ -10,7 +10,7 @@ This repository contains configuration files for various programs that I use:
 
 ## Usage
 
-Copy the files to the appropriate locations (e.g., your `$HOME` directory). The `setup-cli.sh` script can be used to automate this process on Linux (only applicable for some configuration files).
+Copy the files to the appropriate locations (e.g., your `$HOME` directory). The `setup-cli.sh` script can be used to automate this process on Linux (only applicable for some of the configuration files).
 
 Example:
 
@@ -19,6 +19,10 @@ Example:
 cp -i ./zshrc.basic.zsh ~/.zshrc.basic.zsh
 cp -i ./Darwin/zshrc.zsh ~/.zshrc
 cp -i ./Darwin/zshenv.zsh ~/.zshenv
+
+# Open-source mirrors in Mainland China
+# * Copy the following file ONLY if you are in Mainland China
+cp -i ./.cn.env /.cn.env
 
 # Vim
 ./install_dependencies.sh  # install Vim-Plug
