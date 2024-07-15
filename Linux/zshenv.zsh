@@ -12,3 +12,9 @@ export LC_ALL=en_US.UTF-8
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTSIZE=2000
 SAVEHIST=1000
+
+## Software
+# Rustup
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi

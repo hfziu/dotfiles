@@ -38,6 +38,7 @@ plugin-load $plugins
 
 # Initialize completion
 # ---------------------
+fpath+=~/.zfunc # custom zsh functions
 unsetopt LIST_BEEP  # disable beep on an ambiguous completion
 zstyle ':completion:*' completer _complete
 # Allow autocomplete from the middle of filename
