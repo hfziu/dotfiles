@@ -48,6 +48,7 @@ gitconfig() {
 git_username=$(git config --global user.name)
 git_email=$(git config --global user.email)
 git_signingkey=$(git config --global user.signingkey)
+git_credentials=$(git config --global credential.helper)
 cp ./.gitconfig ${HOME}/
 
 if [ -z "$git_username" ]; then
@@ -57,14 +58,12 @@ else
   # Restore git username/email
   git config --global user.name ${git_username}
   git config --global user.email ${git_email}
-  if [ "$git_signingkey" ]; then
-    git config --global user.signingkey ${git_signingkey}
-  fi
+  (( ${+git_credentials} )) && git config --global credential.helper ${git_credentials}
+  (( ${+git_signingkey} )) && git config --global user.signingkey ${git_signingkey}
 fi
 
 if read -qs "sign?Automatically sign git commits? [y/N]:"; then
   git config --global commit.gpgsign true
-  git config --global gpg.program $(which gpg)
 else
   git config --global commit.gpgsign false
 fi
