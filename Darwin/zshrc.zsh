@@ -5,7 +5,7 @@ source ~/.zshrc.basic.zsh
 
 
 # ================
-# macOS - Zsh Conf
+# macOS - Zsh Conf 
 # ================
 
 # Disable Beeps
@@ -25,14 +25,13 @@ alias mv='mv -i'
 
 
 # =================
-# macOS - 3rd Party
+# macOS - 3rd Party 
 # =================
 
 # Pyenv
 # -----
 export PYENV_ROOT="$HOME/.pyenv"
-(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)"
-(( $+commands[pyenv-virtualenv] )) && zsh-defer eval "$(pyenv virtualenv-init -)"
+(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
 
 # GPG Agent
 # ---------
@@ -47,3 +46,4 @@ zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
 function iterm2_print_user_vars() {
 	iterm2_set_user_var proxy_status $([ -z "$ALL_PROXY" ] || echo "📡")
 }
+
