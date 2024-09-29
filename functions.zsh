@@ -30,6 +30,9 @@ if (( ${+IPINFO_API_TOKEN} )); then
   function ipinfo() {
     curl "https://ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
   }
+  function ipinfo6() {
+    curl "https://v6.ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
+  }
   function domainip() {
     DNSTOOL=dig
     # (( ! ${+commands[drill]} )) || DNSTOOL=drill
@@ -42,3 +45,7 @@ if (( ${+IPINFO_API_TOKEN} )); then
     fi
   }
 fi
+
+function ipim() {
+  curl https://ip.im/info
+}
