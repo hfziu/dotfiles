@@ -23,6 +23,9 @@ alias ll="ls -aGl"
 alias lh="ls -aGhl"
 alias mv='mv -i'
 
+# shortcut to open current dir in finder
+alias ofd="open -R ."
+
 
 # =================
 # macOS - 3rd Party 
