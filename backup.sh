@@ -35,9 +35,10 @@ if [ -f "${HOME}/.config/kitty/kitty.conf" ]; then
   cp -r ${HOME}/.config/kitty ./.config/
 fi
 
-if [ -d "${HOME}/.config/nvim" ]; then
-  cp -r ${HOME}/.config/nvim ./.config/
-fi
+# as of Dec 2024, I started using lazyvim.org
+# if [ -d "${HOME}/.config/nvim" ]; then
+#   cp -r ${HOME}/.config/nvim ./.config/
+# fi
 
 if [ -f "${HOME}/.config/zed/settings.json" ]; then
   mkdir -p ./.config/zed

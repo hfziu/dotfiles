@@ -27,11 +27,15 @@ if (( ${+PRIVATE_IP_QUERY_URL} )); then
 fi
 
 if (( ${+IPINFO_API_TOKEN} )); then
-  function ipinfo() {
+  function ipinfo4() {
     curl "https://ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
   }
   function ipinfo6() {
     curl "https://v6.ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
+  }
+  function ipinfo() {
+    ipinfo4
+    ipinfo6
   }
   function domainip() {
     DNSTOOL=dig
