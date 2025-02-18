@@ -9,6 +9,9 @@
 {
   // Editor settings
   // "theme": "Github Light",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "telemetry": {
     "metrics": false
   },
