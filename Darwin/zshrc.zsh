@@ -22,9 +22,11 @@ alias la="ls -aG"
 alias ll="ls -aGl"
 alias lh="ls -aGhl"
 alias mv='mv -i'
-
 # shortcut to open current dir in finder
 alias ofd="open -R ."
+# Python2 is deprecated in recent macOS versions.
+# Default `python` to `python3`.
+alias python="python3"
 
 
 # =================
