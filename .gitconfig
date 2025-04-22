@@ -27,5 +27,3 @@
 	allowedSignersFile = ~/.ssh/allowed_signers
 [gpg]
 	format = ssh
-[credential]
-	helper = osxkeychain
