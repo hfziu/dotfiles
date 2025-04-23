@@ -1,6 +1,19 @@
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+## Homebrew installed SSH
+if [ -f "/opt/homebrew/bin/ssh" ]; then
+  alias ssh="/opt/homebrew/bin/ssh"
+  alias ssh-add="/opt/homebrew/bin/ssh-add"
+  alias ssh-agent="/opt/homebrew/bin/ssh-agent"
+  alias ssh-keygen="/opt/homebrew/bin/ssh-keygen"
+  alias ssh-keyscan="/opt/homebrew/bin/ssh-keyscan"
+  alias ssh-sftp="/opt/homebrew/bin/ssh-sftp"
+  alias ssh-scp="/opt/homebrew/bin/ssh-scp"
+  alias ssh-slogin="/opt/homebrew/bin/ssh-slogin"
+  SSH_AUTH_SOCK="$HOME/.ssh/agent"
+fi
+
 ## Mainland China mirrors
 if [ -f "$HOME/.cn.env" ]; then
   . "$HOME/.cn.env"
