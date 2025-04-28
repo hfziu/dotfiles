@@ -25,6 +25,10 @@ alias mv='mv -i'
 
 # Pyenv
 # -----
-export PYENV_ROOT="$HOME/.pyenv"
-(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)"
-(( $+commands[pyenv-virtualenv] )) && zsh-defer eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)"
+# (( $+commands[pyenv-virtualenv] )) && zsh-defer eval "$(pyenv virtualenv-init -)"
+
+# uv (github.com/astral-sh/uv)
+# ----------------------------
+(( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)"
