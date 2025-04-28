@@ -54,3 +54,21 @@ fi
 function ipim() {
   curl https://ip.im/info
 }
+
+## Python
+
+if [ -d "$HOME/.virtualenvs" ] && ! type activate &>/dev/null; then
+    activate() {
+        if [ $# -ne 1 ]; then
+            echo "Usage: activate <virtualenv_name>"
+            return 1
+        fi
+        local venv_path="$HOME/.virtualenvs/$1/bin/activate"
+        if [ -f "$venv_path" ]; then
+            source "$venv_path"
+        else
+            echo "Virtual environment '$1' not found at $HOME/.virtualenvs/"
+            return 1
+        fi
+    }
+fi
