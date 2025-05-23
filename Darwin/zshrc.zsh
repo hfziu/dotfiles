@@ -24,9 +24,6 @@ alias lh="ls -aGhl"
 alias mv='mv -i'
 # shortcut to open current dir in finder
 alias ofd="open -R ."
-# Python2 is deprecated in recent macOS versions.
-# Default `python` to `python3`.
-alias python="python3"
 
 
 # =================
@@ -41,6 +38,12 @@ alias python="python3"
 # -----
 # export PYENV_ROOT="$HOME/.pyenv"
 # (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
+
+# fnm (Node Version Manager)
+# --------------------------
+# I'm not a Node.js developer, but I need npm to install some tools.
+# Since nvm is a bit heavy for my shell, I use fnm instead for better performance.
+(( $+commands[fnm] )) && eval "$(fnm env)"
 
 # GPG Agent
 # ---------
