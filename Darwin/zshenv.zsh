@@ -46,6 +46,12 @@ if [ -d $OPENJDK_HOME ]; then
   JAVA_HOME=$OPENJDK_HOME
 fi
 
+## Go
+if (( $+commands[go] )) && [ ! -f "$HOME/Library/Application Support/go/env" ]; then
+  go env -w GOBIN="$HOME/.local/bin"
+  go env -w GOMODCACHE="$HOME/.cache/go-mod"
+fi
+
 # Rustup
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
