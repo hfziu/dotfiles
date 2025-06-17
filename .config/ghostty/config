@@ -1,0 +1,12 @@
+theme = "GitHub-Dark-Dimmed"
+
+font-family = "JetBrains Mono"
+font-size = 14
+font-feature = +zero,+ss01,+ss19,+cv07
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+config-file = ?config.macos
+config-file = ?config.linux
