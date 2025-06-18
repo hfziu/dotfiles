@@ -8,5 +8,12 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+window-save-state = always
+
+# platform-specific configurations (e.g., font size, keybindings)
+# Note: Some features are implemented for specific platforms only and will be silently ignored on unsupported platforms.
+#       If any of these features could potentially become cross-platform in the future, they should be configured here
+#       rather than in the platform-specific configuration files.
+# Example: `window-save-state = always` is currently only implemented for macOS.
 config-file = ?config.darwin
 config-file = ?config.linux
