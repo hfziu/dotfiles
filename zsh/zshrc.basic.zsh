@@ -51,6 +51,26 @@ autoload -Uz compinit && compinit
 autoload -U promptinit && promptinit
 prompt pure
 
+# ======================
+# 3rd Party Applications
+# ======================
+# The following configurations may be used in both macOS and Linux
+
+# uv
+# --
+(( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)"
+
+# Pyenv
+# -----
+# export PYENV_ROOT="$HOME/.pyenv"
+# (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
+
+# fnm (Node Version Manager)
+# --------------------------
+# I'm not a Node.js developer, but I need npm to install some tools.
+# Since nvm is a bit heavy for my shell, I use fnm instead for better performance.
+(( $+commands[fnm] )) && eval "$(fnm env)"
+
 
 # ===================
 # Import Environments

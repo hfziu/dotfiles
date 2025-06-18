@@ -48,8 +48,8 @@ fi
 
 ## Go
 if (( $+commands[go] )) && [ ! -f "$HOME/Library/Application Support/go/env" ]; then
+  go env -w GOPATH="$HOME/.local/go"
   go env -w GOBIN="$HOME/.local/bin"
-  go env -w GOMODCACHE="$HOME/.cache/go-mod"
 fi
 
 # Rustup

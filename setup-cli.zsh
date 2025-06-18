@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 OS="$(uname -s)"
+PWD="$(cd "$(dirname "$0")" && pwd)"
 if read -qs "interactive?Prompt before overwrite? [y/N]:"; then
   alias cp="cp -i"
 else
@@ -8,33 +9,34 @@ else
 fi
 echo ""
 
-case "${OS}" in
-    Darwin*)
-        # SKIP: Copy needed files by yourself.
-        ;;
-    Linux*)
-        # Zsh
-        cp ./zshrc.basic.zsh ${HOME}/.zshrc.basic.zsh
-        cp ./${OS}/zshrc.zsh ${HOME}/.zshrc
-        cp ./${OS}/zshenv.zsh ${HOME}/.zshenv
-        cp ./functions.zsh ${HOME}/.functions.zsh
+if [[ "${OS}" != "Darwin" && "${OS}" != "Linux" ]]; then
+  echo "Unknown OS: ${OS}. Only macOS (Darwin) and Linux are supported."
+  exit 1
+fi
 
-        # Vim
-        cp ./.{vimrc,basic.vimrc,plug.vimrc} ${HOME}/
+# Zsh
+cp ${PWD}/zsh/zshrc.basic.zsh ${HOME}/.zshrc.basic.zsh
+cp ${PWD}/zsh/functions.zsh ${HOME}/.functions.zsh
+cp ${PWD}/zsh/zshrc.${OS:l}.zsh ${HOME}/.zshrc
+cp ${PWD}/zsh/zshenv.${OS:l}.zsh ${HOME}/.zshenv
 
-        # Git
-        cp ./.gitignore_global ${HOME}/
+# Vim
+cp ${PWD}/vim/.{vimrc,basic.vimrc,plug.vimrc} ${HOME}/
 
-        # Tmux
-        cp ./.tmux.conf ${HOME}/
-        ;;
-    *)
-        echo "Unknown OS: ${OS}"
-esac
+# Ghostty
+(( $+commands[ghostty] )) && \
+mkdir -p ${HOME}/.config/ghostty && \
+cp ${PWD}/ghostty/config{,.${OS:l}} ${HOME}/.config/ghostty/
+
+# Tmux
+cp ${PWD}/.tmux.conf ${HOME}/
 
 # ==========
 # Git config
 # ==========
+
+# Gitignore
+cp ${PWD}/git/.gitignore_global ${HOME}/
 
 gitconfig() {
   read "git_username?Please input Git Username: "
@@ -49,7 +51,7 @@ git_username=$(git config --global user.name)
 git_email=$(git config --global user.email)
 git_signingkey=$(git config --global user.signingkey)
 git_credentials=$(git config --global credential.helper)
-cp ./.gitconfig ${HOME}/
+cp ${PWD}/git/.gitconfig ${HOME}/
 
 if [ -z "$git_username" ]; then
   # Not configured, prompt to configure

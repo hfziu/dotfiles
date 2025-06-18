@@ -30,21 +30,6 @@ alias ofd="open -R ."
 # macOS - 3rd Party 
 # =================
 
-# uv
-# --
-(( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)"
-
-# Pyenv
-# -----
-# export PYENV_ROOT="$HOME/.pyenv"
-# (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
-
-# fnm (Node Version Manager)
-# --------------------------
-# I'm not a Node.js developer, but I need npm to install some tools.
-# Since nvm is a bit heavy for my shell, I use fnm instead for better performance.
-(( $+commands[fnm] )) && eval "$(fnm env)"
-
 # GPG Agent
 # ---------
 export GPG_TTY="$TTY"
