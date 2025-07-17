@@ -11,7 +11,14 @@ if [ -f "/opt/homebrew/bin/ssh" ]; then
   alias ssh-sftp="/opt/homebrew/bin/ssh-sftp"
   alias ssh-scp="/opt/homebrew/bin/ssh-scp"
   alias ssh-slogin="/opt/homebrew/bin/ssh-slogin"
-  SSH_AUTH_SOCK="$HOME/.ssh/agent"
+  export SSH_AUTH_SOCK="$HOME/.ssh/agent"
+fi
+
+## Bitwarden SSH Agent
+# If Bitwarden SH Agent is enabled, use it as the SSH_AUTH_SOCK (overrides the above)
+BITWARDEN_SSH_AGENT_SOCK="$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
+if [ -S "$BITWARDEN_SSH_AGENT_SOCK" ]; then
+  export SSH_AUTH_SOCK="$BITWARDEN_SSH_AGENT_SOCK"
 fi
 
 ## Mainland China mirrors
