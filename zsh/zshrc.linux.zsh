@@ -18,6 +18,10 @@ alias ll='ls -alF'
 alias ls='ls --color=auto'
 alias mv='mv -i'
 
+# GNU coreutils customizations
+# tell `ls` to color directories blue without bold
+export LS_COLORS='di=0;34:'
+
 
 # =================
 # Linux - 3rd Party
