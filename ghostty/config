@@ -1,8 +1,9 @@
 theme = "GitHub-Dark-Dimmed"
 
+font-family = "Ubuntu Sans Mono"
 font-family = "JetBrains Mono"
+font-feature = +zero,+ss01,+ss19,+cv07  # only supported by JetBrains Mono
 font-size = 14
-font-feature = +zero,+ss01,+ss19,+cv07
 
 cursor-style = block
 cursor-style-blink = false
