@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-set -euo pipefail  # Exit on error, undefined vars, pipe failures
+# Only enable strict mode when executed directly, not when sourced
+(( ${zsh_eval_context[(I)file]} )) || set -euo pipefail
 
 # Configuration
 readonly SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -35,14 +36,26 @@ log() {
   local -A levels=([info]="INFO" [warn]="WARN" [error]="ERROR" [success]="SUCCESS")
   local -A colors=([info]="$CYAN" [warn]="$YELLOW" [error]="$RED" [success]="$GREEN")
   
-  if [[ "$level" == "section" ]]; then
-    printf "  ${BOLD}${BLUE}==== %s ====${NC}\n" "$*" >&2
-  else
-    local label="${levels[$level]:-LOG}"
-    local color="${colors[$level]:-}"
-    printf "${color}[${BOLD}%s${NC}${color}]${NC} " "$label" >&2
-    printf "%b\n" "$*" >&2
+  local label="${levels[$level]:-LOG}"
+  local color="${colors[$level]:-}"
+  printf "${color}[${BOLD}%s${NC}${color}]${NC} " "$label" >&2
+  printf "%b\n" "$*" >&2
+}
+
+section() {
+  local section_name="$1"
+  local command_name="${2:-}"
+  
+  # If a command name is provided, check if it exists
+  if [[ -n "$command_name" ]]; then
+    if (( ! $+commands[$command_name] )); then
+      printf "  ${BOLD}${YELLOW}==== %s (%s not found, skipping) ====${NC}\n" "$section_name" "$command_name" >&2
+      return 1
+    fi
   fi
+  
+  printf "  ${BOLD}${BLUE}==== %s ====${NC}\n" "$section_name" >&2
+  return 0
 }
 
 validate_os() {
@@ -83,7 +96,7 @@ backup() {
 safe_copy() {
   local src="$1" dest="$2"
   
-  [[ ! -f "$src" ]] && { log warn "Source file not found: $src"; return 1; }
+  [[ ! -f "$src" ]] && { log warn "Source file not found: $src"; return 0; }
   
   local action color
   
@@ -107,7 +120,7 @@ safe_copy() {
 
 # Copy configuration files
 setup_zsh() {
-  log section "Zsh"
+  section "Zsh"
   safe_copy "${SCRIPT_DIR}/zsh/zshrc.basic.zsh" "${HOME}/.zshrc.basic.zsh"
   safe_copy "${SCRIPT_DIR}/zsh/functions.zsh" "${HOME}/.functions.zsh"
   safe_copy "${SCRIPT_DIR}/zsh/zshrc.${OS_LOWER}.zsh" "${HOME}/.zshrc"
@@ -115,19 +128,14 @@ setup_zsh() {
 }
 
 setup_vim() {
-  log section "Vim"
+  section "Vim" "vim" || return 0
   safe_copy "${SCRIPT_DIR}/vim/.vimrc" "${HOME}/.vimrc"
   safe_copy "${SCRIPT_DIR}/vim/.basic.vimrc" "${HOME}/.basic.vimrc"
   safe_copy "${SCRIPT_DIR}/vim/.plug.vimrc" "${HOME}/.plug.vimrc"
 }
 
 setup_ghostty() {
-  if (( ! $+commands[ghostty] )); then
-    echo -e "  $(format_action "SKIP" "$YELLOW") Ghostty not found, skipping" >&2
-    return
-  fi
-  
-  log section "Ghostty"
+  section "Ghostty" "ghostty" || return 0
   local config_dir="${HOME}/.config/ghostty"
   mkdir -p "$config_dir"
   safe_copy "${SCRIPT_DIR}/ghostty/config" "${config_dir}/config"
@@ -135,12 +143,12 @@ setup_ghostty() {
 }
 
 setup_tmux() {
-  log section "Tmux"
+  section "Tmux" "tmux" || return 0
   safe_copy "${SCRIPT_DIR}/.tmux.conf" "${HOME}/.tmux.conf"
 }
 
 setup_git() {
-  log section "Git"
+  section "Git" "git" || return 0
   
   # Backup existing git config values using actual config keys
   local -A git_config=(
@@ -214,6 +222,4 @@ main() {
 }
 
 # Run main function if script is executed directly
-if [[ "${(%):-%x}" == "${0}" ]]; then
-  main "$@"
-fi
+(( ${zsh_eval_context[(I)file]} )) || main "$@"
