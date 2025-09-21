@@ -27,8 +27,4 @@ if status is-interactive
 
     # Rust - Fish-compatible cargo setup
     test -d $HOME/.cargo/bin; and fish_add_path $HOME/.cargo/bin
-
-    # China (Mainland) mirrors - enabled by default
-    # USTC mirrors for Homebrew, Rustup
-    cn_mirrors on
 end
