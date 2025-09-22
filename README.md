@@ -59,7 +59,13 @@ Tested on macOS 14 with `zsh 5.9 (x86_64-apple-darwin23.0)`. Compatibility with 
 
 As of September 2025, I'm considering switching to Fish. Compared to Zsh, Fish offers superior out-of-the-box features, eliminating the need for complex configurations and third-party plugins (see [zshrc.basic.zsh](zsh/zshrc.basic.zsh) for my current Zsh plugins). As shown in [fish/config.fish], the simple configuration contains only environment variable settings for external programs (Homebrew, Bitwarden, Go, Rust, etc.) without modifying Fish's default behavior.
 
-However, since Fish is not POSIX-compliant, I use it only as an interactive shell via my [terminal emulator settings](ghostty/config.linux) (avoiding `chsh`). On Apple Silicon macOS, Homebrew installs Fish to `/opt/homebrew/bin/fish`, which isn't in the standard `$PATH`, requiring the absolute path in [Ghostty's configuration](ghostty/config.darwin).
+However, since Fish is not POSIX-compliant, I use it only as an interactive shell via my [terminal emulator settings](ghostty/config.linux) (avoiding `chsh`). On Apple Silicon macOS, Homebrew installs Fish to `/opt/homebrew/bin/fish`, which isn't in the standard `$PATH`, requiring the absolute path in [Ghostty's configuration](ghostty/config.darwin):
+
+```config
+command = direct:/opt/homebrew/bin/fish --login --interactive
+```
+
+Please note that the Ghostty configuration above doesn't change the user's login shell — the `$SHELL` environment variable remains set to the original login shell (e.g., `/bin/zsh`) even when checked from within the Fish shell.
 
 Current Fish config is backed up in [./fish](./fish) with the following structure:
 
