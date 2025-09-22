@@ -142,6 +142,14 @@ setup_ghostty() {
   safe_copy "${SCRIPT_DIR}/ghostty/config.${OS_LOWER}" "${config_dir}/config.${OS_LOWER}"
 }
 
+setup_fish() {
+  section "Fish" "fish" || return 0
+  local config_dir="${HOME}/.config/fish"
+  mkdir -p "$config_dir"
+  safe_copy "${SCRIPT_DIR}/fish/config.fish" "${config_dir}/config.fish"
+  # TODO: custom functions won't be automatically copied yet
+}
+
 setup_tmux() {
   section "Tmux" "tmux" || return 0
   safe_copy "${SCRIPT_DIR}/.tmux.conf" "${HOME}/.tmux.conf"
@@ -208,6 +216,7 @@ main() {
   setup_zsh
   setup_vim
   setup_ghostty
+  setup_fish
   setup_tmux
   setup_git
     
