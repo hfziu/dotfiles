@@ -1,6 +1,8 @@
 if status is-interactive
+    set -l os (uname)
+    
     # Bitwarden SSH Agent
-    set -l bw_sock $HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
+    set -l bw_sock (test "$os" = Darwin; and echo $HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock; or echo $HOME/.bitwarden-ssh-agent.sock)
     test -S "$bw_sock"; and set -gx SSH_AUTH_SOCK "$bw_sock"
 
     # Homebrew setup
