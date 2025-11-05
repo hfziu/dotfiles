@@ -27,3 +27,11 @@ export LS_COLORS='di=0;34:'
 # Linux - 3rd Party
 # =================
 
+# Pyenv
+# -----
+# I mainly use uv for managing Python environments,
+# but since it doesn't support EOL Python versions,
+# I sometimes use pyenv to install older Python versions on my Development machine.
+
+export PYENV_ROOT="$HOME/.pyenv"
+(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"

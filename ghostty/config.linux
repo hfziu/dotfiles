@@ -1,4 +1,7 @@
-command = direct:fish --login --interactive
+# Use the default login shell (usually zsh) on Linux dev machines for compatibility.
+# Prefer fish on personal laptops for daily use.
+
+# command = direct:fish --login --interactive
 
 keybind = ctrl+shift+up=goto_split:up
 keybind = ctrl+shift+down=goto_split:down

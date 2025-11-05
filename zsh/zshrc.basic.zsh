@@ -1,4 +1,4 @@
-# This file contains the zsh plugin manager configurations and some commonly used zsh settings 
+# This file contains the zsh plugin manager configurations and some commonly used zsh settings
 # that can be shared across different operating systems.
 # It is intended to be sourced in the main .zshrc file (maybe OS-specific).
 
@@ -59,11 +59,6 @@ prompt pure
 # uv
 # --
 (( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)"
-
-# Pyenv
-# -----
-# export PYENV_ROOT="$HOME/.pyenv"
-# (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
 
 # fnm (Node Version Manager)
 # --------------------------
