@@ -35,3 +35,7 @@ export LS_COLORS='di=0;34:'
 
 export PYENV_ROOT="$HOME/.pyenv"
 (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
+
+# Direnv
+# ------
+(( $+commands[direnv] )) && zsh-defer eval "$(direnv hook zsh)"
