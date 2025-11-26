@@ -15,6 +15,9 @@ if status is-interactive
         test -d $openjdk_home; and set -gx JAVA_HOME $openjdk_home
     end
 
+    # Python, uv
+    set -x UV_TORCH_BACKEND auto
+
     # Go environment
     command -q go; and not test -f "$HOME/Library/Application Support/go/env"; and begin
         go env -w GOPATH=$HOME/.local/go GOBIN=$HOME/.local/bin

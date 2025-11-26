@@ -58,7 +58,7 @@ prompt pure
 
 # uv
 # --
-(( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)"
+(( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)" && export UV_TORCH_BACKEND=auto
 
 # fnm (Node Version Manager)
 # --------------------------
