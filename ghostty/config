@@ -2,9 +2,10 @@
 # Prior to Ghostty 1.2.0 (2025-09-15), "GitHub Dark Dimmed" was named "GitHub-Dark-Dimmed".
 theme = "GitHub Dark Dimmed"
 
-font-family = "Ubuntu Sans Mono"
+# font-family = "Ubuntu Sans Mono"
 # font-family = "JetBrains Mono"
 # font-feature = +zero,+ss01,+ss19,+cv07  # only supported by JetBrains Mono
+font-family = "Iosevka Term"
 font-size = 14
 
 cursor-style = block
