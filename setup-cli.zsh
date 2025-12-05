@@ -175,7 +175,7 @@ setup_git() {
   if [[ -z "${git_config[user.name]}" ]]; then
     configure_git_user
   else
-    restore_git_config ${(kv)git_config}
+    restore_git_config "${(@kv)git_config}"
   fi
 }
 
