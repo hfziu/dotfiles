@@ -16,12 +16,15 @@ export LC_ALL=en_US.UTF-8
 # - Otherwise for an SSH session, the SSH agent might have been forwarded from the client and the SSH_AUTH_SOCK variable is set accordingly.
 #     We don't overwrite it.
 BITWARDEN_SSH_AGENT_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+BITWARDEN_FLATPAK_SSH_AGENT_SOCK="$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
 if [ -z "$SSH_CONNECTION" ]; then
     if [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
         export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
     fi
     # If Bitwarden SH Agent is enabled, use it as the SSH_AUTH_SOCK (overrides the above)
-    if [ -S "$BITWARDEN_SSH_AGENT_SOCK" ]; then
+    if [ -S "$BITWARDEN_FLATPAK_SSH_AGENT_SOCK" ]; then
+        export SSH_AUTH_SOCK="$BITWARDEN_FLATPAK_SSH_AGENT_SOCK"
+    elif [ -S "$BITWARDEN_SSH_AGENT_SOCK" ]; then
         export SSH_AUTH_SOCK="$BITWARDEN_SSH_AGENT_SOCK"
     fi
 fi
