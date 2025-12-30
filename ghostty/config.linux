@@ -3,10 +3,6 @@
 
 # command = direct:fish --login --interactive
 
-# Font feature
-# - Iosevka stylistic sets: ss12/Ubuntu Mono
-font-feature = +ss12
-
 keybind = ctrl+shift+up=goto_split:up
 keybind = ctrl+shift+down=goto_split:down
 keybind = ctrl+shift+left=goto_split:left

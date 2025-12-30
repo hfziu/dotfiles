@@ -21,3 +21,6 @@ window-save-state = always
 # Example: `window-save-state = always` is currently only implemented for macOS.
 config-file = ?config.darwin
 config-file = ?config.linux
+
+# additional customizations
+config-file = ?config.custom

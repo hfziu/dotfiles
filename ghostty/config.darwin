@@ -3,10 +3,6 @@
 
 command = direct:/opt/homebrew/bin/fish --login --interactive
 
-# Font feature
-# - Iosevka stylistic sets: ss04/Menlo; ss07/Monaco
-font-feature = +ss04
-
 keybind = ctrl+shift+up=goto_split:up
 keybind = ctrl+shift+down=goto_split:down
 keybind = ctrl+shift+left=goto_split:left
