@@ -33,9 +33,9 @@ export LS_COLORS='di=0;34:'
 # but since it doesn't support EOL Python versions,
 # I sometimes use pyenv to install older Python versions on my Development machine.
 
-export PYENV_ROOT="$HOME/.pyenv"
-(( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# (( $+commands[pyenv] )) && zsh-defer eval "$(pyenv init -)" && zsh-defer eval "$(pyenv virtualenv-init -)"
 
 # Direnv
 # ------
-(( $+commands[direnv] )) && zsh-defer eval "$(direnv hook zsh)"
+# (( $+commands[direnv] )) && zsh-defer eval "$(direnv hook zsh)"
