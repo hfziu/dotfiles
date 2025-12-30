@@ -119,6 +119,11 @@ safe_copy() {
 }
 
 # Copy configuration files
+setup_profile() {
+  section "Profile"
+  safe_copy "${SCRIPT_DIR}/.profile" "${HOME}/.profile"
+}
+
 setup_zsh() {
   section "Zsh"
   safe_copy "${SCRIPT_DIR}/zsh/zshrc.basic.zsh" "${HOME}/.zshrc.basic.zsh"
@@ -213,6 +218,7 @@ main() {
   validate_os
   log info "Starting dotfiles setup for" "${BOLD}${OS}${NC}"
   
+  setup_profile
   setup_zsh
   setup_vim
   setup_ghostty

@@ -1,19 +1,25 @@
 if status is-interactive
     set -l os (uname)
     
-    # SSH Agent setup
-    set -l bw_socks "$HOME/.bitwarden-ssh-agent.sock"
-    test "$os" = Darwin
-        and set bw_socks "$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
-        or set -p bw_socks "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
-    for sock in $bw_socks
-        test -S "$sock"; and set -gx SSH_AUTH_SOCK "$sock"; and break
-    end
-    # Prefer forwarded SSH agent in SSH sessions
-    if set -q SSH_TTY
-        set -l forwarded_sock /run/user/1000/gnupg/S.gpg-agent.ssh
-        if test -S "$forwarded_sock"
-            set -gx SSH_AUTH_SOCK "$forwarded_sock"
+    # SSH Agent setup - only configure if not in an SSH session
+    if not set -q SSH_TTY; and not set -q SSH_CONNECTION
+        if test "$os" = Darwin
+            # macOS - Check for Bitwarden SSH Agent
+            set -l bw_sock "$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
+            test -S "$bw_sock"; and set -gx SSH_AUTH_SOCK "$bw_sock"
+        else
+            # Linux - Try Bitwarden (flatpak or native) first, fallback to systemd socket
+            set -l systemd_sock "$XDG_RUNTIME_DIR/ssh-agent.socket"
+            set -l bw_flatpak "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
+            set -l bw_native "$HOME/.bitwarden-ssh-agent.sock"
+            
+            if test -S "$bw_flatpak"
+                set -gx SSH_AUTH_SOCK "$bw_flatpak"
+            else if test -S "$bw_native"
+                set -gx SSH_AUTH_SOCK "$bw_native"
+            else if test -S "$systemd_sock"
+                set -gx SSH_AUTH_SOCK "$systemd_sock"
+            end
         end
     end
 
