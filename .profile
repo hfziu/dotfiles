@@ -34,3 +34,10 @@ else
     # Don't override it
     :
 fi
+
+# Drop-in configs
+if [ -d "$HOME/.profile.d" ]; then
+  for file in "$HOME/.profile.d/"*; do
+    [ -r "$file" ] && . "$file"
+  done
+fi
