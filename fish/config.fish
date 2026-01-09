@@ -1,5 +1,6 @@
 if status is-interactive
     set -l os (uname)
+
     
     # SSH Agent setup - only configure if not in an SSH session
     if not set -q SSH_TTY; and not set -q SSH_CONNECTION
@@ -24,13 +25,20 @@ if status is-interactive
     end
 
     # Homebrew setup
-    if test -f /opt/homebrew/bin/brew
-        /opt/homebrew/bin/brew shellenv | source
+    if test "$os" = Darwin; and test -f /opt/homebrew/bin/brew
+        # `brew shellenv` generates environment setup commands for a specific
+        # shell based on $SHELL. Since I'm not using fish as my default login
+        # shell, I temporarily set $SHELL to fish for this command. Otherwise
+        # the output of `brew shellenv` would not be fish-compatible.
+        env SHELL=(status fish-path) /opt/homebrew/bin/brew shellenv | source
         # Additional Homebrew installed utilities
         set -l gnubin $HOMEBREW_PREFIX/opt/make/libexec/gnubin
         set -l openjdk_home $HOMEBREW_PREFIX/opt/openjdk/libexec/openjdk.jdk/Contents/Home
         test -d $gnubin; and fish_add_path $gnubin
         test -d $openjdk_home; and set -gx JAVA_HOME $openjdk_home
+    else if test -f /home/linuxbrew/.linuxbrew/bin/brew
+        # Do nothing; Some Linuxbrew setups already have /etc/profile.d/brew.sh
+        # to setup the environment.
     end
 
     # Python, uv
