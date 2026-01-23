@@ -17,6 +17,12 @@ HISTSIZE=2000
 SAVEHIST=1000
 
 ## Software
+## Go
+if (( $+commands[go] )) && [ ! -f "$(go env GOENV)" ]; then
+  go env -w GOPATH="$HOME/.local/go"
+  go env -w GOBIN="$HOME/.local/bin"
+fi
+
 # Rustup
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"

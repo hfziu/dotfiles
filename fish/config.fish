@@ -45,7 +45,7 @@ if status is-interactive
     set -x UV_TORCH_BACKEND auto
 
     # Go environment
-    command -q go; and not test -f "$HOME/Library/Application Support/go/env"; and begin
+    command -q go; and not test -f (go env GOENV); and begin
         go env -w GOPATH=$HOME/.local/go GOBIN=$HOME/.local/bin
     end
 

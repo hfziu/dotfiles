@@ -49,7 +49,7 @@ if [ -d $OPENJDK_HOME ]; then
 fi
 
 ## Go
-if (( $+commands[go] )) && [ ! -f "$HOME/Library/Application Support/go/env" ]; then
+if (( $+commands[go] )) && [ ! -f "$(go env GOENV)" ]; then
   go env -w GOPATH="$HOME/.local/go"
   go env -w GOBIN="$HOME/.local/bin"
 fi
