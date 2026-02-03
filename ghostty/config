@@ -8,7 +8,7 @@ theme = "GitHub Dark Dimmed"
 font-family = "Iosevka Term"
 font-size = 14
 
-cursor-style = block
+cursor-style = underline
 cursor-style-blink = false
 shell-integration-features = no-cursor,ssh-env
 
