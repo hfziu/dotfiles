@@ -1,0 +1,4 @@
+patch:
+  translator/preedit_format:  # preedit_format 影响到输入框的显示和“Shift+回车”上屏的字符
+    # 不展開雙拼碼
+    - xform/(?<=[A-Z])\s(?=[A-Z])//  # 消除大写字母之间的空格

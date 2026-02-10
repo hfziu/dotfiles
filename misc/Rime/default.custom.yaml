@@ -1,0 +1,28 @@
+# 這個定製檔是在 rime-ice 的 default.yaml 基礎上根據個人習慣修改的，
+# 不保證在無 rime-ice 情況下（例如在 Rime 出廠配置基礎上）的行爲依然符合預期和習慣。
+# Ref: 語法參考 https://hantang.github.io/rime-docs/zh-Hant/wiki/Configuration/
+
+patch:
+  schema_list:  # 整個替換方案選單
+    - schema: double_pinyin_flypy
+    - schema: jyut6ping3  # bash rime-install cantonese
+  
+  menu/page_size: 9
+  #「以詞定字」這個功能我並不常用，不值得佔用一組快捷鍵。騰出中括號用來翻頁。
+  key_binder/select_first_character: ""
+  key_binder/select_last_character: ""
+  # 如果要追加列表項（而不是覆蓋整個列表），使用 `/+` 語法：
+  key_binder/bindings/+:
+    - when: has_menu
+      accept: bracketleft
+      send: Page_Up
+    - when: has_menu
+      accept: bracketright
+      send: Page_Down
+    - when: always
+      accept: Control+Shift+F
+      toggle: traditionalization # 切換簡繁
+  # rime-ice 默認只配置了左 Shift 切換中英文。這裏根據個人習慣也允許右 Shift。
+  ascii_composer/switch_key/Shift_R: commit_code
+
+  switcher/caption: "「方案選單」"
