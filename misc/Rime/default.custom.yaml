@@ -3,14 +3,15 @@
 # Ref: 語法參考 https://hantang.github.io/rime-docs/zh-Hant/wiki/Configuration/
 
 patch:
-  schema_list:  # 整個替換方案選單
+  schema_list: # 整個替換方案選單
     - schema: double_pinyin_flypy
-    - schema: jyut6ping3  # bash rime-install cantonese
-  
+    - schema: rime_ice
+    - schema: jyut6ping3 # bash rime-install cantonese
+
   menu/page_size: 9
-  #「以詞定字」這個功能我並不常用，不值得佔用一組快捷鍵。騰出中括號用來翻頁。
-  key_binder/select_first_character: ""
-  key_binder/select_last_character: ""
+  # 修改「以詞定字」默認快捷鍵。我更習慣用中括號 [ ] 來翻頁。
+  key_binder/select_first_character: "minus" # 減號 -
+  key_binder/select_last_character: "equal" # 等號 =
   # 如果要追加列表項（而不是覆蓋整個列表），使用 `/+` 語法：
   key_binder/bindings/+:
     - when: has_menu

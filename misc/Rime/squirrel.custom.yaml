@@ -1,9 +1,10 @@
 patch:
   style/color_scheme: "native"
-  app_options:
-    com.microsoft.VSCode:
-      ascii_mode: false
-    net.kovidgoyal.kitty:
-      ascii_mode: true
-    com.mitchellh.ghostty:
-      ascii_mode: true
+  style/color_scheme_dark: # reset rime-ice's scheme; fallback to "native" if not set
+  # 這裏可以針對個別 App 進行設定，例如切換到某 App 時讓 Squirrel 自動進入英文模式。
+  # 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
+  # 但我個人習慣不使用這個功能，也幾乎不使用 Rime 的 ascii_mode；如需輸入英文，直接用 Caps Lock 切換到 ABC 輸入法；
+  # 另外，使用 macOS 系統的 Automatically switch to a document’s input source 選項來記住每個 App 的輸入法狀態。
+  # app_options:
+  #   com.microsoft.VSCode:
+  #     ascii_mode: false # 關閉「默認英文模式」

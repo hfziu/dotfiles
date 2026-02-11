@@ -10,7 +10,7 @@ NC='\033[0m' # No Color
 log() {
     local action=$1
     local message=$2
-    
+
     case "$action" in
         install)
             echo -e "  ${GREEN}[Installed]${NC} ${message}"
@@ -54,7 +54,7 @@ for file in "$SCRIPT_DIR"/*.custom.yaml; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         target="$RIME_DIR/$filename"
-        
+
         if [ -f "$target" ]; then
             # Check if files are identical
             if cmp -s "$file" "$target"; then

@@ -1,5 +1,5 @@
 __patch:
-# Rx: rime-emoji-cantonese:emoji_cantonese:schema=jyut6ping3 {
+  # Rx: rime-emoji-cantonese:emoji_cantonese:schema=jyut6ping3 {
   - patch/+:
       __include: emoji_cantonese_suggestion:/patch
 # }
