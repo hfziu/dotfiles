@@ -1,1 +1,2 @@
-plugin/packer_compiled.lua
+# I prefer updating the plugins regularly. Don't commit the lock file.
+lazy-lock.json
