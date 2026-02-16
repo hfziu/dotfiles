@@ -1,2 +1,3 @@
 # I prefer updating the plugins regularly. Don't commit the lock file.
 lazy-lock.json
+.nvimlog
