@@ -6,7 +6,6 @@ font-family = "Iosevka Term"
 font-feature = -calt,-liga,-dlig  # disable ligatures
 font-size = 14
 
-cursor-style = underline
 cursor-style-blink = false
 shell-integration-features = no-cursor,ssh-env
 
