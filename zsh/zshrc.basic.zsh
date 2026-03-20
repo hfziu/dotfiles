@@ -60,11 +60,9 @@ prompt pure
 # --
 (( $+commands[uv] )) && eval "$(uv generate-shell-completion zsh)" && eval "$(uvx --generate-shell-completion zsh)" && export UV_TORCH_BACKEND=auto
 
-# fnm (Node Version Manager)
-# --------------------------
-# I'm not a Node.js developer, but I need npm to install some tools.
-# Since nvm is a bit heavy for my shell, I use fnm instead for better performance.
-(( $+commands[fnm] )) && eval "$(fnm env)"
+# Mise
+# ----
+(( $+commands[mise] )) && eval "$(mise activate zsh --shims)"
 
 
 # ===================
