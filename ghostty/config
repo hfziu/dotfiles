@@ -1,10 +1,6 @@
-# Note: Some themes have been renamed since the last release.
-# Prior to Ghostty 1.2.0 (2025-09-15), "GitHub Dark Dimmed" was named "GitHub-Dark-Dimmed".
-theme = "GitHub Dark Dimmed"
-
-font-family = "Iosevka Term"
-font-feature = -calt,-liga,-dlig  # disable ligatures
-font-size = 14
+# font-family = "Iosevka Term"
+# font-feature = -calt,-liga,-dlig  # disable ligatures
+# font-size = 14
 
 cursor-style-blink = false
 shell-integration-features = no-cursor,ssh-env
