@@ -3,6 +3,9 @@
 
 command = direct:/opt/homebrew/bin/fish --login --interactive
 
+macos-option-as-alt = true
+window-colorspace = display-p3
+
 keybind = ctrl+shift+up=goto_split:up
 keybind = ctrl+shift+down=goto_split:down
 keybind = ctrl+shift+left=goto_split:left

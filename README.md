@@ -7,28 +7,30 @@ This repository contains configuration for the tools I use:
 - `tmux` (terminal multiplexer): WARNING: prefix is set to `C-a` instead of the default `C-b`. This is purely a personal preference.
 - ~~`kitty` (terminal emulator): [Documentation](https://sw.kovidgoyal.net/kitty/)~~ switched to Ghostty.
 - [Ghostty](https://ghostty.org)
-- [Neovim](https://github.com/neovim/neovim)
+- [Neovim](https://github.com/neovim/neovim) with [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ## Usage
 
-Copy files to the appropriate locations (e.g., your `$HOME` directory). Example:
+There is a `setup-cli.zsh` script that can automatically copy the configuration files to their designated locations. I recommend carefully reviewing the script (and those config files) before running it.
+
+Alternatively, you can manually copy the files you need:
 
 ```zsh
-# For zsh on macOS
+# Zsh
 cp -i zsh/zshrc.basic.zsh ~/.zshrc.basic.zsh
 cp -i zsh/zshrc.darwin.zsh ~/.zshrc
 cp -i zsh/zshenv.darwin.zsh ~/.zshenv
 
 # Open-source mirrors in Mainland China
-# * Copy the following file ONLY if you are in Mainland China
+# * The `.cn.env` file set some environment variables to use mirrors for Homebrew, Rust, etc., 
+#   which may improve download speeds for Mainland China users.
+#   This file is intentionally excluded from the setup script.
 cp -i ./.cn.env ~/.cn.env
 
 # Vim
 vim/install_dependencies.sh  # install Vim-Plug
 cp -i vim/{.basic.,.plug.,.}vimrc ~/
 ```
-
-If you are using Zsh, a subset of the configurations can be automated with `setup-cli.zsh` (check the script before running to ensure it fits your needs).
 
 ### Auto-completion
 

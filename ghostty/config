@@ -3,7 +3,10 @@
 # font-size = 14
 
 cursor-style-blink = false
-shell-integration-features = no-cursor,ssh-env
+shell-integration-features = no-cursor,sudo,ssh-env
+
+# Quick terminal requires accessibility permissions on macOS.
+keybind = global:f12=toggle_quick_terminal
 
 window-save-state = always
 
