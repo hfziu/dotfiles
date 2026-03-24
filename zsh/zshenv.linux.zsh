@@ -4,6 +4,11 @@
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+## Homebrew
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 ## Add /usr/local/bin and ~/.local/bin to PATH if not present 
 (( $PATH[(I)/usr/local/sbin] )) || export PATH="/usr/local/sbin:$PATH"
 (( $PATH[(I)/usr/local/bin] )) || export PATH="/usr/local/bin:$PATH"
