@@ -10,8 +10,10 @@ git clone https://github.com/rime/plum.git
 cd plum
 
 # I use rime-ice and cantonese (jyutping)
-bash rime-install iDvel/rime-ice:others/recipes/full
+bash rime-install prelude  # required by cantonese
+bash rime-install iDvel/rime-ice:others/recipes/full  # this overrides default.yaml from prelude
 bash rime-install cantonese
+bash rime-install rime-emoji-cantonese
 ```
 
 Then
