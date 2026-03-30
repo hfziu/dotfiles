@@ -65,6 +65,23 @@ validate_os() {
   fi
 }
 
+setup_antidote() {
+  section "Antidote"
+
+  local antidote_home="${ZDOTDIR:-$HOME}/.antidote"
+  local antidote_source="${antidote_home}/antidote.zsh"
+
+  if [[ -r "$antidote_source" ]]; then
+    echo -e "  $(format_action "SKIP" "$GRAY") ${antidote_source/#${HOME}/~}" >&2
+    return 0
+  fi
+
+  (( $+commands[git] )) || { log error "git is required to install antidote without Homebrew."; exit 1; }
+
+  log info "Installing antidote from the official git repository"
+  git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_home"
+}
+
 # Backup a file before overwriting it
 backup() {
   local file_to_backup="$1"
@@ -127,9 +144,47 @@ setup_profile() {
 setup_zsh() {
   section "Zsh"
   safe_copy "${SCRIPT_DIR}/zsh/zshrc.basic.zsh" "${HOME}/.zshrc.basic.zsh"
+  safe_copy "${SCRIPT_DIR}/zsh/zsh_plugins.txt" "${HOME}/.zsh_plugins.txt"
   safe_copy "${SCRIPT_DIR}/zsh/functions.zsh" "${HOME}/.functions.zsh"
   safe_copy "${SCRIPT_DIR}/zsh/zshrc.${OS_LOWER}.zsh" "${HOME}/.zshrc"
   safe_copy "${SCRIPT_DIR}/zsh/zshenv.${OS_LOWER}.zsh" "${HOME}/.zshenv"
+}
+
+setup_uv_completions() {
+  section "uv Completions"
+  if (( ! $+commands[uv] )); then
+    echo -e "  $(format_action "SKIP" "$GRAY") Install uv manually to generate its zsh completions" >&2
+    return 0
+  fi
+
+  local zfunc_dir="${HOME}/.zfunc"
+  local temp_dir
+  temp_dir="$(mktemp -d)"
+  mkdir -p "$zfunc_dir"
+
+  uv generate-shell-completion zsh > "${temp_dir}/_uv"
+  safe_copy "${temp_dir}/_uv" "${zfunc_dir}/_uv"
+
+  if (( $+commands[uvx] )); then
+    uvx --generate-shell-completion zsh > "${temp_dir}/_uvx"
+    safe_copy "${temp_dir}/_uvx" "${zfunc_dir}/_uvx"
+  else
+    echo -e "  $(format_action "SKIP" "$GRAY") uvx not found; skipped its zsh completion" >&2
+  fi
+
+  rm -rf "$temp_dir"
+}
+
+setup_starship() {
+  section "Starship"
+  if (( ! $+commands[starship] )); then
+    echo -e "  $(format_action "SKIP" "$GRAY") Install starship manually to use this prompt config" >&2
+    return 0
+  fi
+
+  local config_dir="${HOME}/.config"
+  mkdir -p "$config_dir"
+  safe_copy "${SCRIPT_DIR}/starship/starship.toml" "${config_dir}/starship.toml"
 }
 
 setup_vim() {
@@ -219,7 +274,10 @@ main() {
   log info "Starting dotfiles setup for" "${BOLD}${OS}${NC}"
   
   setup_profile
+  setup_antidote
   setup_zsh
+  setup_uv_completions
+  setup_starship
   setup_vim
   setup_ghostty
   setup_fish

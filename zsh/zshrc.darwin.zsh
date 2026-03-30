@@ -32,9 +32,9 @@ alias ofd="open -R ."
 
 # GPG Agent
 # ---------
-export GPG_TTY="$TTY"
-# zsh-defer export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
+# export GPG_TTY="$TTY"
+# export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+# gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # iTerm2 shell integration
 # ------------------------
@@ -43,4 +43,3 @@ zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
 function iterm2_print_user_vars() {
 	iterm2_set_user_var proxy_status $([ -z "$ALL_PROXY" ] || echo "📡")
 }
-

@@ -10,28 +10,32 @@ if [ -f "$HOME/.cn.env" ]; then
 fi
 
 ## Homebrew
-if [ -x /opt/homebrew/bin/brew ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [ -x /usr/local/bin/brew ]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-fi
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
 
-if [[ -v HOMEBREW_PREFIX ]]; then  # requires zsh 5.3 or later
-  # OpenJDK installed by Homebrew
-  OPENJDK_HOME=$HOMEBREW_PREFIX/opt/openjdk/libexec/openjdk.jdk/Contents/Home
-  # Homebrew-installed gnu utils
-  export PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
-fi
+typeset -gU path fpath
+path=(
+  "${HOMEBREW_PREFIX}/bin"
+  "${HOMEBREW_PREFIX}/sbin"
+  $path
+)
+fpath=(
+  "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+  $fpath
+)
+
+[ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 
 ## Add /usr/local/bin and ~/.local/bin to PATH if not present
 (( $PATH[(I)/usr/local/sbin] )) || export PATH="/usr/local/sbin:$PATH"
 (( $PATH[(I)/usr/local/bin] )) || export PATH="/usr/local/bin:$PATH"
 (( $PATH[(I)$HOME/.local/bin] )) || export PATH="$HOME/.local/bin:$PATH"
 
-## OpenJDK
-if [ -d $OPENJDK_HOME ]; then
-  JAVA_HOME=$OPENJDK_HOME
-fi
+## Mise
+MISE_SHIMS_DIR="${MISE_DATA_DIR:-$HOME/.local/share/mise}/shims"
+[[ -d "$MISE_SHIMS_DIR" ]] && path=("$MISE_SHIMS_DIR" $path)
 
 ## Go
 if (( $+commands[go] )) && [ ! -f "$(go env GOENV)" ]; then

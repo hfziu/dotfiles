@@ -2,7 +2,8 @@
 
 This repository contains configuration for the tools I use:
 
-- `zsh` (shell): with the lightweight plugin manager [Antidote.lite](https://github.com/mattmc3/zsh_unplugged).
+- `zsh` (shell): with the plugin manager [Antidote](https://github.com/mattmc3/antidote)
+  - Using the [Starship](https://github.com/starship/starship) prompt when available.
 - `vim` (text editor): with plugin manager [Vim-Plug](https://github.com/junegunn/vim-plug).
 - `tmux` (terminal multiplexer): WARNING: prefix is set to `C-a` instead of the default `C-b`. This is purely a personal preference.
 - ~~`kitty` (terminal emulator): [Documentation](https://sw.kovidgoyal.net/kitty/)~~ switched to Ghostty.
@@ -17,7 +18,9 @@ Alternatively, you can manually copy the files you need:
 
 ```zsh
 # Zsh
+git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 cp -i zsh/zshrc.basic.zsh ~/.zshrc.basic.zsh
+cp -i zsh/zsh_plugins.txt ~/.zsh_plugins.txt
 cp -i zsh/zshrc.darwin.zsh ~/.zshrc
 cp -i zsh/zshenv.darwin.zsh ~/.zshenv
 
@@ -52,6 +55,7 @@ cargo completions zsh > ~/.zfunc/_cargo
 ### macOS
 
 Tested on macOS 26 with `zsh 5.9 (x86_64-apple-darwin25.0)`. Compatibility with significantly older macOS releases (e.g., macOS pre-10.13 High Sierra with `zsh` < 5.3) is not guaranteed.
+This repository assumes Apple Silicon macOS with Homebrew installed at `/opt/homebrew`. To improve startup time, this path is hardcoded in shell configuration files to avoid the overhead of calling `brew` to determine the Homebrew prefix.
 
 ### Linux
 

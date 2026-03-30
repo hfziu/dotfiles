@@ -14,6 +14,10 @@ fi
 (( $PATH[(I)/usr/local/bin] )) || export PATH="/usr/local/bin:$PATH"
 (( $PATH[(I)$HOME/.local/bin] )) || export PATH="$HOME/.local/bin:$PATH"
 
+## Mise
+MISE_SHIMS_DIR="${MISE_DATA_DIR:-$HOME/.local/share/mise}/shims"
+[[ -d "$MISE_SHIMS_DIR" ]] && path=("$MISE_SHIMS_DIR" $path)
+
 ## Save command history
 # The following three lines already exist in the system-wide ZSH profile on macOS (/etc/zshrc)
 # but in some systems (e.g. Arch Linux) the variables may need to be explicitly set in user profile (~/.zshenv)

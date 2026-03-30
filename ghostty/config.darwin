@@ -1,7 +1,7 @@
 # Use the default login shell (usually zsh) on Linux dev machines for compatibility.
 # Prefer fish on personal laptops for daily use.
 
-command = direct:/opt/homebrew/bin/fish --login --interactive
+# command = direct:/opt/homebrew/bin/fish --login --interactive
 
 macos-option-as-alt = true
 window-colorspace = display-p3

@@ -1,0 +1,7 @@
+# Completion
+zsh-users/zsh-completions kind:fpath path:src
+
+# Interactive shell features
+zdharma-continuum/fast-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search

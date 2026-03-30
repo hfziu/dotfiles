@@ -1,0 +1,35 @@
+add_newline = false
+command_timeout = 300
+
+format = "$directory$git_branch$username$hostname$cmd_duration$character"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+style = "blue"
+
+[git_branch]
+format = "[$branch]($style) "
+style = "bright-black"
+
+[username]
+show_always = false
+style_user = "bright-green"
+style_root = "red"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = true
+ssh_symbol = ""
+format = "[@$hostname]($style) "
+style = "yellow"
+
+[cmd_duration]
+min_time = 2000
+format = "[took $duration]($style) "
+style = "dimmed white"
+
+[character]
+success_symbol = "[>](magenta)"
+error_symbol = "[>](red)"
+vimcmd_symbol = "[<](green)"
