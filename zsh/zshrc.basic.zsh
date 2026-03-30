@@ -56,7 +56,8 @@ load_zsh_plugins() {
 }
 
 setup_completion() {
-  local -a existing_compdump stale_compdump
+  local -a existing_compdump stale_compdump custom_completions
+  local rebuild_compdump=false
 
   unsetopt LIST_BEEP  # disable beep on an ambiguous completion
   zmodload zsh/complist
@@ -70,8 +71,21 @@ setup_completion() {
   autoload -Uz compinit
   existing_compdump=( "${ZSH_COMPDUMP}"(#qN) )
   stale_compdump=( "${ZSH_COMPDUMP}"(#qN.mh+24) )
+  custom_completions=( "${HOME}"/.zfunc/_*(N-.) )
 
   if (( ${#existing_compdump} == 0 || ${#stale_compdump} != 0 )); then
+    rebuild_compdump=true
+  else
+    local completion_file
+    for completion_file in "${custom_completions[@]}"; do
+      if [[ "$completion_file" -nt "${ZSH_COMPDUMP}" ]]; then
+        rebuild_compdump=true
+        break
+      fi
+    done
+  fi
+
+  if $rebuild_compdump; then
     compinit -d "${ZSH_COMPDUMP}"
   else
     compinit -C -d "${ZSH_COMPDUMP}"
