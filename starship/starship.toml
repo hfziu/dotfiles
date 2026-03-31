@@ -21,7 +21,7 @@ format = "[$user]($style)"
 [hostname]
 ssh_only = true
 ssh_symbol = ""
-format = "[@$hostname]($style) "
+format = "@[$hostname]($style) "
 style = "yellow"
 
 [cmd_duration]
