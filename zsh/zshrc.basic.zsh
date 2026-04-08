@@ -146,6 +146,11 @@ unfunction setup_prompt
 # ======================
 # The following configurations may be used in both macOS and Linux
 
+# mise
+# ----
+# uncomment the following lines when needed
+# (( $+commands[mise] )) && eval "$(mise activate zsh)"
+
 # uv
 # --
 (( $+commands[uv] )) && export UV_TORCH_BACKEND=auto
