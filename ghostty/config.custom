@@ -1,0 +1,12 @@
+# This file list some opinionated and personal configuration choices.
+# It's not included in the setup-cli.zsh script for compatibility reasons.
+# You can pick and copy any of the configurations here into a config.custom file on Ghostty's config directory.
+
+theme = Catppuccin Frappe
+
+command = direct:/opt/homebrew/bin/fish --login --interactive
+
+# assuming the Ghostty embedded JetBrains Mono font, enable classic construction style (ss01)
+font-feature = ss01, zero
+
+keybind = global:alt+space=toggle_quick_terminal
