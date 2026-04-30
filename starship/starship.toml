@@ -1,11 +1,16 @@
 add_newline = false
 command_timeout = 300
 
-format = "$username$hostname$directory$git_branch$git_status$cmd_duration$character"
+format = "$username$hostname$directory${env_var.python_venv}$git_branch$git_status$cmd_duration$character"
 
 [directory]
 fish_style_pwd_dir_length = 1
 style = "blue"
+
+[env_var.python_venv]
+variable = "VIRTUAL_ENV_PROMPT"
+format = "[($env_value)]($style) "
+style = "bright-black"
 
 [git_branch]
 format = "[$branch]($style) "

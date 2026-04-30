@@ -41,6 +41,9 @@ if status is-interactive
         # to setup the environment.
     end
 
+    # Local path
+    test -d $HOME/.local/bin; and fish_add_path $HOME/.local/bin
+
     # Python, uv
     set -x UV_TORCH_BACKEND auto
 
