@@ -209,6 +209,22 @@ setup_fish() {
   _safe_copy "${SCRIPT_DIR}/fish/config.fish" "${config_dir}/config.fish"
 }
 
+setup_zellij() {
+  _section "Zellij" "zellij" || return 0
+  local config_dir="${HOME}/.config/zellij"
+  local source_layout_dir="${SCRIPT_DIR}/misc/zellij/layouts"
+  local target_layout_dir="${config_dir}/layouts"
+  local layout
+  mkdir -p "$config_dir"
+  _safe_copy "${SCRIPT_DIR}/misc/zellij/config.kdl" "${config_dir}/config.kdl"
+
+  [[ -d "$source_layout_dir" ]] || return 0
+  mkdir -p "$target_layout_dir"
+  for layout in "${source_layout_dir}"/*(N.); do
+    _safe_copy "$layout" "${target_layout_dir}/${layout:t}"
+  done
+}
+
 setup_tmux() {
   _section "Tmux" "tmux" || return 0
   _safe_copy "${SCRIPT_DIR}/.tmux.conf" "${HOME}/.tmux.conf"
@@ -253,6 +269,7 @@ main() {
   setup_vim
   setup_ghostty
   setup_fish
+  setup_zellij
   setup_tmux
 
   # Git

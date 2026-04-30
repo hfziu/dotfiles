@@ -1,0 +1,6 @@
+// We assume no nerdfonts; pane frames stay off to reduce chrome.
+simplified_ui true
+pane_frames false
+default_shell "fish"
+default_layout "compact_custom"
+show_startup_tips false
