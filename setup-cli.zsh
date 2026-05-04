@@ -179,6 +179,9 @@ setup_completions() {
 
   # docker
   _generate_completion_if_available "docker" "_docker" docker completion zsh || true
+
+  # zellij
+  _generate_completion_if_available "zellij" "_zellij" zellij setup --generate-completion zsh || true
 }
 
 setup_starship() {
