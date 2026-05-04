@@ -1,13 +1,12 @@
-# font-family = "Iosevka Term"
-# font-feature = -calt,-liga,-dlig  # disable ligatures
-# font-size = 14
-
+## Appearance
 cursor-style-blink = false
-shell-integration-features = no-cursor,sudo,ssh-env
 
+## Keybindings
 # Quick terminal requires accessibility permissions on macOS.
 keybind = global:f12=toggle_quick_terminal
 
+## Misc
+shell-integration-features = no-cursor,sudo,ssh-env
 window-save-state = always
 
 # platform-specific configurations (e.g., font size, keybindings)
