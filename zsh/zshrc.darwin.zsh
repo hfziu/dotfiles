@@ -30,12 +30,6 @@ alias ofd="open -R ."
 # macOS - 3rd Party 
 # =================
 
-# GPG Agent
-# ---------
-# export GPG_TTY="$TTY"
-# export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-# gpg-connect-agent updatestartuptty /bye > /dev/null
-
 # iTerm2 shell integration
 # ------------------------
 # zsh-defer test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
