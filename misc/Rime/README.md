@@ -23,6 +23,15 @@ Then
 ./restore.sh
 ```
 
+On Windows with Weasel, copy the custom configs into the default user directory at `%APPDATA%\Rime` with:
+
+```powershell
+# cd <this repo>\misc\Rime
+.\restore.ps1
+```
+
+The PowerShell script skips `squirrel.custom.yaml`.
+
 Finally re-deploy Rime to apply the changes.
 
 ## Updates
