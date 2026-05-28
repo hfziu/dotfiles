@@ -18,6 +18,8 @@ style = "bright-black"
 
 [git_status]
 format = "([$all_status]($style) )"
+diverged = "↕" # U+2195
+deleted = "×" # U+00D7
 
 [username]
 show_always = false
