@@ -1,0 +1,11 @@
+# Rime table
+# coding: utf-8
+#@/db_name	custom_phrase_double.txt
+#@/db_type	tabledb
+#
+# 自定义短语
+# 此乃双拼版本自定义短语。完整说明见 custom_phrase.txt
+#
+# 示例：小鹤双拼下 ios 的第一候选项是「戳死」，这里将个人更常用的「iOS」强制置顶。
+
+iOS	ios

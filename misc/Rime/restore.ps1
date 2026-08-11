@@ -55,3 +55,31 @@ foreach ($file in $sourceFiles) {
     Copy-Item -LiteralPath $file.FullName -Destination $target
     Write-Log 'install' $file.Name
 }
+
+$phraseFile = Join-Path $scriptDir 'custom_phrase_double.txt'
+$phraseTarget = Join-Path $RimeDir 'custom_phrase_double.txt'
+
+if (Test-Path -LiteralPath $phraseFile -PathType Leaf) {
+    if (Test-Path -LiteralPath $phraseTarget -PathType Leaf) {
+        $sourceHash = (Get-FileHash -LiteralPath $phraseFile -Algorithm SHA256).Hash
+        $targetHash = (Get-FileHash -LiteralPath $phraseTarget -Algorithm SHA256).Hash
+
+        if ($sourceHash -eq $targetHash) {
+            Write-Log 'skip' 'custom_phrase_double.txt'
+        }
+        else {
+            $response = Read-Host 'custom_phrase_double.txt already exists. Override it? [y/N]'
+            if ($response -match '^[Yy]$') {
+                Copy-Item -LiteralPath $phraseFile -Destination $phraseTarget -Force
+                Write-Log 'update' 'custom_phrase_double.txt'
+            }
+            else {
+                Write-Log 'skip' 'custom_phrase_double.txt'
+            }
+        }
+    }
+    else {
+        Copy-Item -LiteralPath $phraseFile -Destination $phraseTarget
+        Write-Log 'install' 'custom_phrase_double.txt'
+    }
+}

@@ -69,3 +69,25 @@ for file in "$SCRIPT_DIR"/*.custom.yaml; do
         fi
     fi
 done
+
+phrase_file="$SCRIPT_DIR/custom_phrase_double.txt"
+phrase_target="$RIME_DIR/custom_phrase_double.txt"
+
+if [ -f "$phrase_file" ]; then
+    if [ -f "$phrase_target" ]; then
+        if cmp -s "$phrase_file" "$phrase_target"; then
+            log "skip" "custom_phrase_double.txt"
+        else
+            read -r -p "custom_phrase_double.txt already exists. Override it? [y/N] " response
+            if [[ "$response" =~ ^[Yy]$ ]]; then
+                cp "$phrase_file" "$phrase_target"
+                log "update" "custom_phrase_double.txt"
+            else
+                log "skip" "custom_phrase_double.txt"
+            fi
+        fi
+    else
+        cp "$phrase_file" "$phrase_target"
+        log "install" "custom_phrase_double.txt"
+    fi
+fi
