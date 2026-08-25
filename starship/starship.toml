@@ -1,7 +1,7 @@
 add_newline = false
 command_timeout = 300
 
-format = "$username$hostname$directory${env_var.python_venv}$git_branch$git_status$cmd_duration$character"
+format = "$username${custom.host_or_distrobox}$directory${env_var.python_venv}$git_branch$git_status$cmd_duration$character"
 
 [directory]
 fish_style_pwd_dir_length = 1
@@ -27,10 +27,16 @@ style_user = "bright-green"
 style_root = "red"
 format = "[$user]($style)"
 
-[hostname]
-ssh_only = true
-ssh_symbol = ""
-format = "@[$hostname]($style) "
+[custom.host_or_distrobox]
+command = '''
+if [ -n "$CONTAINER_ID" ]; then
+	printf '%s' "$CONTAINER_ID"
+elif [ -n "$SSH_CONNECTION" ]; then
+	hostname
+fi
+'''
+when = 'test -n "$CONTAINER_ID" || test -n "$SSH_CONNECTION"'
+format = "@[$output]($style) "
 style = "yellow"
 
 [cmd_duration]
