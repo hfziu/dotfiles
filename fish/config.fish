@@ -29,6 +29,9 @@ if status is-interactive
         go env -w GOPATH=$HOME/.local/go GOBIN=$HOME/.local/bin
     end
 
-    # Rust - Fish-compatible cargo setup
+    # Rustup
+    if test -n "$HOMEBREW_PREFIX"; and test -d "$HOMEBREW_PREFIX/opt/rustup/bin"
+        fish_add_path --path "$HOMEBREW_PREFIX/opt/rustup/bin"
+    end
     test -d $HOME/.cargo/bin; and fish_add_path $HOME/.cargo/bin
 end

@@ -44,6 +44,9 @@ if (( $+commands[go] )) && [ ! -f "$(go env GOENV)" ]; then
 fi
 
 # Rustup
+if [[ -n "${HOMEBREW_PREFIX:-}" && -d "$HOMEBREW_PREFIX/opt/rustup/bin" ]]; then
+  path=("$HOMEBREW_PREFIX/opt/rustup/bin" $path)
+fi
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi

@@ -9,7 +9,8 @@ if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-## Add /usr/local/bin and ~/.local/bin to PATH if not present 
+## Add /usr/local/bin and ~/.local/bin to PATH if not present
+typeset -gU path
 (( $PATH[(I)/usr/local/sbin] )) || export PATH="/usr/local/sbin:$PATH"
 (( $PATH[(I)/usr/local/bin] )) || export PATH="/usr/local/bin:$PATH"
 (( $PATH[(I)$HOME/.local/bin] )) || export PATH="$HOME/.local/bin:$PATH"
@@ -33,6 +34,9 @@ if (( $+commands[go] )) && [ ! -f "$(go env GOENV)" ]; then
 fi
 
 # Rustup
+if [[ -n "${HOMEBREW_PREFIX:-}" && -d "$HOMEBREW_PREFIX/opt/rustup/bin" ]]; then
+  path=("$HOMEBREW_PREFIX/opt/rustup/bin" $path)
+fi
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
